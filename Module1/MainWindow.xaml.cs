@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -161,6 +161,42 @@ namespace Module1
 
                 }
                 connection.Close();
+            }
+        }
+
+        private void button_Update_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (isValid())
+                {
+                    DateTime aDate = DateTime.Now;
+
+                    int value = int.Parse(txtbox_ID.Text);
+
+                    string connectionString = "SERVER=localhost;DATABASE=mod4;UID=root;PASSWORD=admin;";
+
+                    MySqlConnection conn = new MySqlConnection(connectionString);
+
+                    int userVal = int.Parse(txtbox_ID.Text);
+
+                    string query = "UPDATE emptable SET id='" + int.Parse(this.txtbox_ID.Text) + "', emp_name='" + this.txtbox_Name.Text + "', emp_age='" + int.Parse(this.txtbox_Age.Text) + "', emp_salary='" + int.Parse(this.txtbox_Salary.Text) + "',join_date='" + aDate.ToString("yyyy-MM-dd HH:mm:ss") + "', phone='" + this.txtbox_Phone.Text + "' where id='" + int.Parse(this.txtbox_ID.Text) + "' ";
+
+                    MySqlCommand command = new MySqlCommand(query, conn);
+                    conn.Open();
+
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        LoadGrid();
+                        MessageBox.Show("Updated Successfully!", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        clearData();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
