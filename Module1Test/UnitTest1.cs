@@ -1,3 +1,4 @@
+using Module1;
 using NUnit.Framework;
 
 namespace Module1Test
@@ -10,9 +11,16 @@ namespace Module1Test
         }
 
         [Test]
-        public void Test1()
+        public void Create()
         {
-            Assert.Pass();
+            insertclass user = new insertclass();
+            Assert.AreEqual(true, user.TestInsert("Reymond", 21, 21, 212123123));
+        }
+        [Test]
+        public void Delete()
+        {
+            insertclass user = new insertclass();
+            Assert.AreEqual(true, user.TestDelete(2));
         }
     }
 }
