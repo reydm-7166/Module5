@@ -52,5 +52,16 @@ namespace Module1
             }
             return false;
         }
+
+        public bool DatabaseConnection()
+        {
+            string connectionString = "SERVER=localhost;DATABASE=mod4;UID=root;PASSWORD=admin;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                return true;
+            }
+        }
     }
 }

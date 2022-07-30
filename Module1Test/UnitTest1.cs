@@ -22,5 +22,11 @@ namespace Module1Test
             insertclass user = new insertclass();
             Assert.AreEqual(true, user.TestDelete(2));
         }
+        [Test]
+        public void ConnectDB()
+        {
+            insertclass user = new insertclass();
+            Assert.AreEqual(true, user.DatabaseConnection());
+        }
     }
 }
